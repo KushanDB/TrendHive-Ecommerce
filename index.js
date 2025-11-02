@@ -13,7 +13,16 @@ const app = express()
 app.use(express.json())
 
 const connectionString = "mongodb+srv://admin:Kushan123@cluster0.lloh3q9.mongodb.net/?appName=Cluster0"
-mongoose.connect(connectionString)
+
+mongoose.connect(connectionString).then(
+    ()=>{
+        console.log("Database connected...")
+    }
+).catch(
+    ()=>{
+        console.log("Database connection Failed...")
+    }
+)
 
 app.get("/",
     (req,res)=>{
