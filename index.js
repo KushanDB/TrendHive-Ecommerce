@@ -1,4 +1,5 @@
 import express from "express";
+import mongoose from "mongoose";    
 
 const app = express()
 
@@ -10,6 +11,9 @@ const app = express()
 
 //Middleware to parse JSON bodies
 app.use(express.json())
+
+const connectionString = "mongodb+srv://admin:Kushan123@cluster0.lloh3q9.mongodb.net/?appName=Cluster0"
+mongoose.connect(connectionString)
 
 app.get("/",
     (req,res)=>{
