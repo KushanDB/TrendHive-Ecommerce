@@ -1,5 +1,6 @@
 import express from "express";
-import mongoose from "mongoose";    
+import mongoose from "mongoose";  
+import Student from "./models/Student.js";  
 
 const app = express()
 
@@ -23,16 +24,6 @@ mongoose.connect(connectionString).then(
         console.log("Database connection Failed...")
     }
 )
-
-const studentSchema = new mongoose.Schema( // structure of the document
-    {
-        name : String,
-        age : Number,
-        city : String
-    }
-)
-
-const Student = mongoose.model("Student", studentSchema) //Mongoose Model
 
 
 
