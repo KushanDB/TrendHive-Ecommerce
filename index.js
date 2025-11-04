@@ -65,7 +65,24 @@ app.post("/",
                 city : req.body.city
             }
         )
-        student.save()
+        student.save().then(
+            ()=>{
+                res.json(
+                    {
+                        message : "Student data saved successfully"
+                    }
+                )
+            }
+
+        ).catch(
+            ()=>{
+                res.json(
+                    {
+                        message : "Failed to save student data"
+                    }
+                )
+            }
+        )
 
     }
 )
