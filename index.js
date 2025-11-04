@@ -32,7 +32,7 @@ const studentSchema = new mongoose.Schema( // structure of the document
     }
 )
 
-const Student = mongoose.model("Student", studentSchema) //Mongoose Models
+const Student = mongoose.model("Student", studentSchema) //Mongoose Model
 
 
 
