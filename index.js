@@ -24,6 +24,18 @@ mongoose.connect(connectionString).then(
     }
 )
 
+const studentSchema = new mongoose.Schema( // structure of the document
+    {
+        name : String,
+        age : Number,
+        city : String
+    }
+)
+
+const Student = mongoose.model("Student", studentSchema) //Mongoose Models
+
+
+
 app.get("/",
     (req,res)=>{
         console.log(req.body)
@@ -44,7 +56,17 @@ app.get("/",
 
 app.post("/",
     (req,res)=>{
-        console.log("POST request received...")
+        // console.log("POST request received...")
+        //console.log(req.body)
+        const student = new Student(
+            {
+                name : req.body.name,
+                age : req.body.age,
+                city : req.body.city
+            }
+        )
+        student.save()
+
     }
 )
 
