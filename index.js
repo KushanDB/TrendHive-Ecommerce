@@ -69,7 +69,7 @@ app.post("/",
             ()=>{
                 res.json(
                     {
-                        message : "Student data saved successfully"
+                        message : "Student created successfully"
                     }
                 )
             }
