@@ -29,17 +29,23 @@ mongoose.connect(connectionString).then(
 
 app.get("/",
     (req,res)=>{
-        console.log(req.body)
-        console.log("GET request received...")
-
-        let prefix = "Mr."
-        if(req.body.Gender === "Female"){
-            prefix = "Ms."
-        }
-
-        res.json(
-            {
-                message : "Hello " +prefix+ " " +req.body.Name  
+       
+        //read data from MongoDB
+        Student.find().then(
+            (studentsData)=>{
+                res.json(
+                    {
+                        studentsData 
+                    }
+                )
+            }
+        ).catch(
+            ()=>{
+                res.json(
+                    {
+                        message : "Failed to fetch student data"
+                    }
+                )
             }
         )
     }
