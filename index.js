@@ -29,10 +29,6 @@ mongoose.connect(connectionString).then(
 
 app.use("/students", studentRouter)
 
-
-
-
-
 // Start the server
 app.listen(5000,
     ()=>{
