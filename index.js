@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";  
 import Student from "./models/student.js";  
+import studentRouter from "./routes/studentsRouter.js";
 
 const app = express()
 
@@ -24,7 +25,9 @@ mongoose.connect(connectionString).then(
         console.log("Database connection Failed...")
     }
 )
+// connect to  studentRouter
 
+app.use("/students", studentRouter)
 
 
 app.get("/",
