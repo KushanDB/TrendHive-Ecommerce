@@ -1,4 +1,4 @@
-import Student from "../models/student.js";
+import Student from "../models/student.js"; // Import Student model
 
 export function getStudents(req,res){
        
