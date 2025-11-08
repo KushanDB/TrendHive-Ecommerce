@@ -29,7 +29,9 @@ mongoose.connect(connectionString).then(
 
 app.use("/students", studentRouter)
 
-// Start the server
+
+// Start the server in port 5000..
+
 app.listen(5000,
     ()=>{
         console.log("Server is started...")
