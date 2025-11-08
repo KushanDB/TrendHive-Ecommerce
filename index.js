@@ -1,6 +1,5 @@
 import express from "express";
 import mongoose from "mongoose";  
-import Student from "./models/student.js";  
 import studentRouter from "./routes/studentsRouter.js";
 
 const app = express()
@@ -25,76 +24,16 @@ mongoose.connect(connectionString).then(
         console.log("Database connection Failed...")
     }
 )
+
 // connect to  studentRouter
 
 app.use("/students", studentRouter)
 
 
-app.get("/",
-    (req,res)=>{
-       
-        //read data from MongoDB
-        Student.find().then(
-            (studentsData)=>{
-                res.json(
-                    {
-                        studentsData 
-                    }
-                )
-            }
-        ).catch(
-            ()=>{
-                res.json(
-                    {
-                        message : "Failed to fetch student data"
-                    }
-                )
-                
-            }
-        )
-    }
-)
-
-app.post("/",
-    (req,res)=>{
-        // console.log("POST request received...")
-        //console.log(req.body)
-        const student = new Student(
-            {
-                name : req.body.name,
-                age : req.body.age,
-                city : req.body.city
-            }
-        )
-        student.save().then(
-            ()=>{
-                res.json(
-                    {
-                        message : "Student created successfully"
-                    }
-                )
-            }
-
-        ).catch(
-            ()=>{
-                res.json(
-                    {
-                        message : "Failed to save student data"
-                    }
-                )
-            }
-        )
-
-    }
-)
-
-app.delete("/",
-    (req,res)=>{
-        console.log("DELETE request received...")
-    }
-)
 
 
+
+// Start the server
 app.listen(5000,
     ()=>{
         console.log("Server is started...")
