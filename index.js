@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";  
 import studentRouter from "./routes/studentsRouter.js"; // Import studentRouter
+import userRouter from "./routes/userRouter.js";
 
 const app = express()
 
@@ -28,6 +29,10 @@ mongoose.connect(connectionString).then(
 // connect to  studentRouter
 
 app.use("/students", studentRouter)
+
+// Connect userRouter to /users path 
+
+app.use("/users", userRouter)
 
 
 // Start the server in port 5000..
