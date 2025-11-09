@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from "mongoose"; // import mongoose
 
 const userSchema = new mongoose.Schema( // structure of the user document 
     {
