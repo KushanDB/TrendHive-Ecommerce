@@ -26,7 +26,7 @@ mongoose.connect(connectionString).then(
     }
 )
 
-// connect to  studentRouter
+// connect  studentRouter to /students path
 
 app.use("/students", studentRouter)
 
