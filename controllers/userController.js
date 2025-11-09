@@ -1,0 +1,25 @@
+import User from "../models/user.js"; // Import User model
+
+function createUser(req, res) { 
+    const user = new User(
+        req.body
+    )
+
+    user.save().then(
+        () => {
+            res.json(
+                {
+                    message: "User created successfully"
+                }
+            )
+        }
+    ).catch(
+        () => {
+            res.json(
+                {
+                    message: "Failed to create user"
+                }
+            )
+        }
+    )
+}
