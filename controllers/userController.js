@@ -33,3 +33,38 @@ export function createUser(req, res) {
         }
     )
 }
+
+export function loginUser(req, res) { // Login function
+
+    User.findOne( // Find user by email
+        { 
+            email: req.body.email 
+        }
+    ).then(
+        (user) => {
+            if (user == null) {
+                res.json(
+                    {
+                        message: "User not found"
+                    }
+                )
+            }else{
+                const isPasswordValid = bcrypt.compareSync(req.body.password, user.password); // Compare the provided password with the stored hashed password
+                if (isPasswordValid) {
+                    res.json(
+                        {
+                            message: "Login successful"
+                        }
+                    )
+                }else{
+                    res.json(
+                        {
+                            message: "Invalid password"
+                        }
+                    )
+                }
+            }
+        }
+        
+    )
+}
