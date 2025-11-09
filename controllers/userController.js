@@ -1,11 +1,13 @@
 import User from "../models/user.js"; // Import User model
 import bcrypt from "bcrypt"; // Import bcrypt for password hashing
 
+// Handle user creation: Hash password and save user to database
 export function createUser(req, res) { 
 
-    const hashPassword = bcrypt.hashSync(req.body.password, 10); // Hash the password with a salt round of 10   
+    // Hash the password with a salt round of 10
+    const hashPassword = bcrypt.hashSync(req.body.password, 10);   
 
-    const user = new User(
+    const user = new User(        // Create new User instance
         {
             email: req.body.email,
             firstName: req.body.firstName,
@@ -15,7 +17,7 @@ export function createUser(req, res) {
         }
     ) 
 
-    user.save().then(
+    user.save().then(           // Save user to database
         () => {
             res.json(
                 {
