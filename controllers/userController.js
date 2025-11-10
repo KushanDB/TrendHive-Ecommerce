@@ -4,10 +4,10 @@ import jwt from "jsonwebtoken"; // Import jsonwebtoken for token generation
 
 
 // Handle user creation: Hash password and save user to database
-export function createUser(req, res) { 
+export function createUser(req, res) {
 
     // Hash the password with a salt round of 10
-    const hashPassword = bcrypt.hashSync(req.body.password, 10);   
+    const hashPassword = bcrypt.hashSync(req.body.password, 10);
 
     const user = new User(        // Create new User instance
         {
@@ -17,7 +17,7 @@ export function createUser(req, res) {
             password: hashPassword,
             role: req.body.role
         }
-    ) 
+    )
 
     user.save().then(           // Save user to database
         () => {
@@ -43,8 +43,8 @@ export function createUser(req, res) {
 export function loginUser(req, res) {  // Login user function
 
     User.findOne( // Find user by email from the request body in database
-        { 
-            email: req.body.email 
+        {
+            email: req.body.email
         }
     ).then(
         (user) => {                     // Callback function after finding user
@@ -54,15 +54,30 @@ export function loginUser(req, res) {  // Login user function
                         message: "User not found"
                     }
                 )
-            }else{   // If user found                    
+            } else {   // If user found                    
                 const isPasswordValid = bcrypt.compareSync(req.body.password, user.password); // Compare the provided password with the stored hashed password
                 if (isPasswordValid) { // If password matches
+
+                    // ----------------create jwt token for authenticated user----------------
+
+                    const token = jwt.sign(    // Generate JWT token about the user
+                        {
+                            email: user.email,
+                            firstName: user.firstName,
+                            lastName: user.lastName,
+                            role: user.role,
+                            isEmailVerified: user.isEmailVerified
+                        },
+                        "secretkey123",  // Secret key for signing the token
+                    )
+
                     res.json(
                         {
-                            message: "Login successful"
+                            message: "Login successful",
+                            token: token  // Return the generated token
                         }
                     )
-                }else{ // If password does not match
+                } else { // If password does not match
                     res.json(
                         {
                             message: "Invalid password"
@@ -71,6 +86,6 @@ export function loginUser(req, res) {  // Login user function
                 }
             }
         }
-        
+
     )
 }
