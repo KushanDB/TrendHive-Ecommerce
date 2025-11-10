@@ -68,7 +68,7 @@ export function loginUser(req, res) {  // Login user function
                             role: user.role,
                             isEmailVerified: user.isEmailVerified
                         },
-                        "jwt secretkey",  // Secret key for signing the token
+                        "jwt secretkey",  // Secret key for signing the token **********
                     )
 
                     res.json(
