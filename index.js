@@ -14,6 +14,12 @@ const app = express()
 //Middleware to parse JSON bodies
 app.use(express.json())
 
+app.use(
+    ()=>{
+        console.log("Http request has been received to the middleware...") 
+    }
+)
+
 const connectionString = "mongodb+srv://admin:Kushan123@cluster0.lloh3q9.mongodb.net/?appName=Cluster0"
 
 mongoose.connect(connectionString).then(
