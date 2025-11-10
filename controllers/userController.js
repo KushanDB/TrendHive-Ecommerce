@@ -1,5 +1,7 @@
 import User from "../models/user.js"; // Import User model
 import bcrypt from "bcrypt"; // Import bcrypt for password hashing
+import jwt from "jsonwebtoken"; // Import jsonwebtoken for token generation
+
 
 // Handle user creation: Hash password and save user to database
 export function createUser(req, res) { 
