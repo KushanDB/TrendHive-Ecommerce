@@ -14,6 +14,7 @@ const app = express()
 //Middleware to parse JSON bodies
 app.use(express.json())
 
+// Custom middleware to log HTTP requests
 app.use(
     ()=>{
         console.log("Http request has been received to the middleware...") 
