@@ -15,11 +15,11 @@ const app = express()
 app.use(express.json())
 
 // Custom middleware to log HTTP requests
-app.use(
+/*app.use(
     ()=>{
         console.log("Http request has been received to the middleware...") 
     }
-)
+)*/
 
 const connectionString = "mongodb+srv://admin:Kushan123@cluster0.lloh3q9.mongodb.net/?appName=Cluster0"
 
