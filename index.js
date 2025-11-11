@@ -16,11 +16,8 @@ app.use(express.json())
 
 // Custom middleware to log HTTP requests
 app.use(
-    (req, res, next)=>{
-        // console.log("Http request has been received to the middleware...") 
-        const token = req.header("Authorization")  // Extract token from Authorization header
-        console.log("Token received in middleware: ", token)
-       // next() // Proceed to the next middleware or route handler
+    ()=>{
+        console.log("Http request has been received to the middleware...") 
     }
 )
 
