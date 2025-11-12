@@ -26,7 +26,13 @@ app.use(
             token = token.replace("Bearer ", ""); // Remove 'Bearer ' prefix if present
             jwt.verify(token, "jwt secretkey", // decrypt the token to get user data
                 (err, decoded) => {
-                    console.log("Decoded token data:", decoded);
+                    if(decoded == null){
+                        res.json(
+                            {
+                                message: "Invalid Token... Please login again.."
+                            }
+                        )
+                    }
                 }
             )
         }
