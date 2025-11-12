@@ -2,6 +2,8 @@ import express from "express";
 import mongoose from "mongoose";  
 import studentRouter from "./routes/studentsRouter.js"; // Import studentRouter
 import userRouter from "./routes/userRouter.js";
+import jwt from "jsonwebtoken"; // Import jsonwebtoken for token verification
+
 
 const app = express()
 
@@ -21,8 +23,12 @@ app.use(
         //console.log("Token received in middleware: ", token);
         //console.log("Http request has been received to the middleware...")
         if(token != null){
-            token = token.replace("Bearer ","");
-            console.log("Token received in middleware: ", token);
+            token = token.replace("Bearer ",""); // Remove 'Bearer ' prefix if present
+            jwt.verify(token,"jwt secretkey", // decrypt the token to get user data
+                (err,decoded)=>{
+                        console.log("Decoded token data:", decoded);
+                }
+            )
         }
     }
 )
