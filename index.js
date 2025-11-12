@@ -32,6 +32,8 @@ app.use(
                                 message: "Invalid Token... Please login again.."
                             }
                         )
+                    }else{
+                        console.log("Decoded JWT Data: ", decoded);
                     }
                 }
             )
