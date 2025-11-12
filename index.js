@@ -17,10 +17,11 @@ app.use(express.json())
 // Custom middleware to log HTTP requests
 app.use(
     (req,res,next)=>{
-        const token = req.header("Authorization");
+        let token = req.header("Authorization");
         //console.log("Token received in middleware: ", token);
         //console.log("Http request has been received to the middleware...")
         if(token != null){
+            token = token.replace("Bearer ","");
             console.log("Token received in middleware: ", token);
         }
     }
