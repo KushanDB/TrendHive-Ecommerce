@@ -18,8 +18,11 @@ app.use(express.json())
 app.use(
     (req,res,next)=>{
         const token = req.header("Authorization");
-        console.log("Token received in middleware: ", token);
+        //console.log("Token received in middleware: ", token);
         //console.log("Http request has been received to the middleware...")
+        if(token != null){
+            console.log("Token received in middleware: ", token);
+        }
     }
 )
 
