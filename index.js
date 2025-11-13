@@ -32,12 +32,15 @@ app.use(
                                 message: "Invalid Token... Please login again.."
                             }
                         )
+                        return; // Stop further processing because token is invalid
                     }else{
-                        console.log("Decoded JWT Data: ", decoded);
+                        //console.log("Decoded JWT Data: ", decoded);
+                        req.user = decoded; // Attach decoded user data to request message
                     }
                 }
             )
         }
+        next(); //Pass the request to relevant route handler
     }
 )
 
