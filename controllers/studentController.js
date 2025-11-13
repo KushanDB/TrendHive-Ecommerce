@@ -25,7 +25,7 @@ export function getStudents(req,res){
 
 export function createStudent(req,res){
 
-    if(req.user == null){
+    if(req.user == null){ // Check if user data is attached to request
         res.json(
             {
                 message : "Unauthorized access... Please login first."
@@ -34,7 +34,7 @@ export function createStudent(req,res){
         return; // Stop further processing if user is not authenticated
     }
 
-    if(req.user.role != "admin"){
+    if(req.user.role != "admin"){ // Check if user role is admin and if yes, allow student creation
         res.json(
             {
                 message : "You must be an admin to create student records."
