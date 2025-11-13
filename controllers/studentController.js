@@ -24,8 +24,25 @@ export function getStudents(req,res){
     }
 
 export function createStudent(req,res){
-        // console.log("POST request received...")
-        //console.log(req.body)
+
+    if(req.user == null){
+        res.json(
+            {
+                message : "Unauthorized access... Please login first."
+            }
+        )
+        return; // Stop further processing if user is not authenticated
+    }
+
+    if(req.user.role != "admin"){
+        res.json(
+            {
+                message : "You must be an admin to create student records."
+            }
+        )
+        return; // Stop further processing if user is not admin
+    }
+
         const student = new Student(
             {
                 name : req.body.name,
