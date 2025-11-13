@@ -40,7 +40,7 @@ app.use(
                 }
             )
         }
-        next(); //Pass the request to relevant route handler
+        next();     //Pass the request to relevant route handler
     }
 )
 
