@@ -35,7 +35,7 @@ export function createStudent(req,res){
     }
 
     if(req.user.role != "admin"){ // Check if user role is admin and if yes, allow student creation
-        res.json(
+        res.status(403).json(
             {
                 message : "You must be an admin to create student records."
             }
