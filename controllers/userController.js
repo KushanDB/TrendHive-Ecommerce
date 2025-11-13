@@ -49,7 +49,7 @@ export function loginUser(req, res) {  // Login user function
     ).then(
         (user) => {                     // Callback function after finding user
             if (user == null) {    // If user not found
-                res.json(
+                res.status(404).json(
                     {
                         message: "User not found"
                     }
@@ -78,7 +78,7 @@ export function loginUser(req, res) {  // Login user function
                         }
                     )
                 } else { // If password does not match
-                    res.json(
+                    res.status(401).json(
                         {
                             message: "Invalid password"
                         }
