@@ -16,6 +16,8 @@ const app = express()
 //Middleware to parse JSON bodies
 app.use(express.json())
 
+//-----------------Authentication Middleware Starts Here-------------------
+
 // Custom middleware to log HTTP requests
 app.use(
     (req, res, next) => {
@@ -43,6 +45,8 @@ app.use(
         next();     //Pass the request to relevant route handler
     }
 )
+//-----------------Authentication Middleware Ends Here-------------------
+
 
 const connectionString = "mongodb+srv://admin:Kushan123@cluster0.lloh3q9.mongodb.net/?appName=Cluster0"
 
