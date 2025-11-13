@@ -25,7 +25,7 @@ app.use(
         if (token != null) {
             token = token.replace("Bearer ", ""); // Remove 'Bearer ' prefix if present
             jwt.verify(token, "jwt secretkey", // decrypt the token to get user data
-                (err, decoded) => {
+                (err, decoded) => {          // Run after decryption
                     if(decoded == null){
                         res.json(
                             {
