@@ -1,11 +1,22 @@
 import Product from "../models/product.js"; // Import Product model
+import { isAdmin } from "./userController.js";
 
 // Handle product creation: Save product to database
 export async function createProduct(req, res) {
 
     //----------------Validates User Authentication and Authorization----------------
+
+    if(!isAdmin(req)){
+        res.status(403).json( 
+            {
+                message: "You do not have permission to create a product."
+            }
+        )
+        return;   // Stop further processing because user is not authorized...
+    }
+
     
-    if(req.user == null){
+   /* if(req.user == null){
         res.status(401).json( 
             {
                 message: "Please login and try again."
@@ -21,7 +32,7 @@ export async function createProduct(req, res) {
             }
         )
         return;   // Stop further processing because user is not authorized...
-    }
+    } */
 
     try{
         const productData = req.body;  // Get product data from request body
