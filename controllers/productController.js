@@ -73,3 +73,37 @@ export async function getProducts(req, res) {
         )
     }
 }
+
+export async function deleteProduct(req, res) {
+        if(!isAdmin(req)){
+        res.status(403).json( 
+            {
+                message: "You do not have permission to create a product."
+            }
+        )
+        return;   // Stop further processing because user is not authorized...
+    }
+    try{
+        const productId = req.params.productId; // Get product ID from request parameters
+
+        await Product.deleteOne(
+            {
+                productID: productId // Delete product by productID
+            }
+        )
+
+        res.json(
+            {
+                message: "Product deleted successfully"
+            }
+        )
+    }catch(error){
+        console.error("Error deleting product: ", error); 
+        res.status(500).json(                           // Internal Server Error
+            {
+                message: "Failed to delete product"
+            }
+        )
+    }
+    
+}
