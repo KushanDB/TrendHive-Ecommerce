@@ -5,7 +5,7 @@ import { isAdmin } from "./userController.js";
 
 export async function createProduct(req, res) {
 
-//----------------Validates User Authentication and Authorization----------------
+    //----------------Validates User Authentication and Authorization----------------
 
     if (!isAdmin(req)) {        // Can only be done by admin users
         res.status(403).json(
@@ -126,7 +126,7 @@ export async function updateProduct(req, res) {
         const updateData = req.body; // Get updated product data from request body  
         await Product.updateOne(     // Update product in database
             { productID: productId }, // Find product by productID
-            { updateData }      // Set the updated data
+            { $set: updateData }      // Set the updated data
         );
         res.json(
             {
@@ -140,5 +140,5 @@ export async function updateProduct(req, res) {
                 message: "Failed to update product"
             }
         )
-    }  
+    }
 }
