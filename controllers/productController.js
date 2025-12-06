@@ -15,7 +15,7 @@ export async function createProduct(req, res) {
         return;   // Stop further processing because user is not authorized...
     }
 
-    
+
    /* if(req.user == null){
         res.status(401).json( 
             {
@@ -49,6 +49,26 @@ export async function createProduct(req, res) {
         res.status(500).json(                           // Internal Server Error
             {
                 message: "Failed to create product"
+            }
+        )
+    }
+}
+
+//----------------Get all products from the database-----------------
+
+export async function getProducts(req, res) {
+    try{
+        const products =  await Product.find(); // Fetch all products from database
+        res.json(                               // Return products as JSON response
+            {
+                products: products
+            }
+        )
+    }catch(error){
+        console.error("Error fetching products: ", error); 
+        res.status(500).json(                           // Internal Server Error
+            {
+                message: "Failed to retrieve products"
             }
         )
     }
