@@ -3,6 +3,8 @@ import Product from "../models/product.js"; // Import Product model
 // Handle product creation: Save product to database
 export async function createProduct(req, res) {
 
+    //----------------Validates User Authentication and Authorization----------------
+    
     if(req.user == null){
         res.status(401).json( 
             {
@@ -20,7 +22,7 @@ export async function createProduct(req, res) {
         )
         return;   // Stop further processing because user is not authorized...
     }
-    
+
     try{
         const productData = req.body;  // Get product data from request body
         const product = new Product(productData);        // Create new Product instance by using the model
