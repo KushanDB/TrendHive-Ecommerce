@@ -142,3 +142,37 @@ export async function updateProduct(req, res) {
         )
     }
 }
+
+//----------------When getting the details of only one product by ID-----------------
+
+export async function getProductById(req, res) {
+    try {
+        const productId = req.params.productId; // Get product ID from request parameters
+        const product = await Product.findOne(   // Find product by productID
+            {
+                productID: productId // Search the specified productID
+            }
+        );
+        if(product == null){
+            res.status(404).json(                           // Product Not Found
+                {
+                    message: "Product not found"
+                }
+            )
+        }else{
+            res.json(                               
+                {
+                    product: product
+                }
+            )
+        }
+       
+    } catch (error) {
+        console.error("Error fetching product: ", error);
+        res.status(500).json(                           // Internal Server Error
+            {
+                message: "Failed to retrieve product"
+            }
+        )
+    }
+}
