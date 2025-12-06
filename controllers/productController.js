@@ -1,10 +1,11 @@
 import Product from "../models/product.js"; // Import Product model
 import { isAdmin } from "./userController.js";
 
-// Handle product creation: Save product to database
+//----------------Create a new product and save to database-----------------
+
 export async function createProduct(req, res) {
 
-    //----------------Validates User Authentication and Authorization----------------
+//----------------Validates User Authentication and Authorization----------------
 
     if (!isAdmin(req)) {        // Can only be done by admin users
         res.status(403).json(
@@ -74,6 +75,7 @@ export async function getProducts(req, res) {
     }
 }
 
+//----------------Delete a product by ID-----------------
 export async function deleteProduct(req, res) {
     if (!isAdmin(req)) {  // Can only be done by admin users
         res.status(403).json(
@@ -106,4 +108,37 @@ export async function deleteProduct(req, res) {
         )
     }
 
+}
+
+//----------------Update a product by ID-----------------
+
+export async function updateProduct(req, res) {
+    if (!isAdmin(req)) {  // Can only be done by admin users
+        res.status(403).json(
+            {
+                message: "You do not have permission to update a product."
+            }
+        )
+        return;   // Stop further processing because user is not authorized...
+    }
+    try {
+        const productId = req.params.productId; // Get product ID from request parameters
+        const updateData = req.body; // Get updated product data from request body  
+        await Product.updateOne(     // Update product in database
+            { productID: productId }, // Find product by productID
+            { updateData }      // Set the updated data
+        );
+        res.json(
+            {
+                message: "Product updated successfully"
+            }
+        )
+    } catch (error) {
+        console.error("Error updating product: ", error);
+        res.status(500).json(                           // Internal Server Error
+            {
+                message: "Failed to update product"
+            }
+        )
+    }  
 }
