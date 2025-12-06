@@ -2,7 +2,7 @@ import mongoose from "mongoose"; // import mongoose
 
 const userSchema = new mongoose.Schema( // structure of the user document 
     {
-        email: { //act as users primary key
+        email: {             //act as users primary key
             type: String,
             required: true, // email is required
             unique: true // email must be unique
