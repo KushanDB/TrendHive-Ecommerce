@@ -6,7 +6,7 @@ export async function createProduct(req, res) {
 
     //----------------Validates User Authentication and Authorization----------------
 
-    if(!isAdmin(req)){
+    if(!isAdmin(req)){        // Can only be done by admin users
         res.status(403).json( 
             {
                 message: "You do not have permission to create a product."
@@ -75,7 +75,7 @@ export async function getProducts(req, res) {
 }
 
 export async function deleteProduct(req, res) {
-        if(!isAdmin(req)){
+        if(!isAdmin(req)){  // Can only be done by admin users
         res.status(403).json( 
             {
                 message: "You do not have permission to create a product."
