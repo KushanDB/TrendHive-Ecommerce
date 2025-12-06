@@ -1,6 +1,5 @@
 import express from "express";
 import mongoose from "mongoose";
-import studentRouter from "./routes/studentsRouter.js"; // Import studentRouter
 import userRouter from "./routes/userRouter.js";
 import jwt from "jsonwebtoken"; // Import jsonwebtoken for token verification
 import productRouter from "./routes/productRouter.js";
@@ -60,9 +59,6 @@ mongoose.connect(connectionString).then(
         console.log("Database connection Failed...")
     }
 )
-
-// connect  studentRouter to /students path
-app.use("/students", studentRouter)
 
 // Connect userRouter to /users path 
 app.use("/users", userRouter)
