@@ -6,8 +6,8 @@ export async function createProduct(req, res) {
 
     //----------------Validates User Authentication and Authorization----------------
 
-    if(!isAdmin(req)){        // Can only be done by admin users
-        res.status(403).json( 
+    if (!isAdmin(req)) {        // Can only be done by admin users
+        res.status(403).json(
             {
                 message: "You do not have permission to create a product."
             }
@@ -16,25 +16,25 @@ export async function createProduct(req, res) {
     }
 
 
-   /* if(req.user == null){
-        res.status(401).json( 
-            {
-                message: "Please login and try again."
-            }
-        )
-        return;   // Stop further processing because user is not authenticated...
-    }
+    /* if(req.user == null){
+         res.status(401).json( 
+             {
+                 message: "Please login and try again."
+             }
+         )
+         return;   // Stop further processing because user is not authenticated...
+     }
+ 
+     if(req.user.role !== "admin"){   // Check if user role is admin
+         res.status(403).json( 
+             {
+                 message: "You do not have permission to create a product."
+             }
+         )
+         return;   // Stop further processing because user is not authorized...
+     } */
 
-    if(req.user.role !== "admin"){   // Check if user role is admin
-        res.status(403).json( 
-            {
-                message: "You do not have permission to create a product."
-            }
-        )
-        return;   // Stop further processing because user is not authorized...
-    } */
-
-    try{
+    try {
         const productData = req.body;  // Get product data from request body
         const product = new Product(productData);        // Create new Product instance by using the model
         await product.save();           // Save product to database
@@ -44,8 +44,8 @@ export async function createProduct(req, res) {
                 product: product // Return the created product
             }
         )
-    }catch(error){
-        console.error("Error creating product: ", error); 
+    } catch (error) {
+        console.error("Error creating product: ", error);
         res.status(500).json(                           // Internal Server Error
             {
                 message: "Failed to create product"
@@ -57,15 +57,15 @@ export async function createProduct(req, res) {
 //----------------Get all products from the database-----------------
 
 export async function getProducts(req, res) {
-    try{
-        const products =  await Product.find(); // Fetch all products from database
+    try {
+        const products = await Product.find(); // Fetch all products from database
         res.json(                               // Return products as JSON response
             {
                 products: products
             }
         )
-    }catch(error){
-        console.error("Error fetching products: ", error); 
+    } catch (error) {
+        console.error("Error fetching products: ", error);
         res.status(500).json(                           // Internal Server Error
             {
                 message: "Failed to retrieve products"
@@ -75,15 +75,15 @@ export async function getProducts(req, res) {
 }
 
 export async function deleteProduct(req, res) {
-        if(!isAdmin(req)){  // Can only be done by admin users
-        res.status(403).json( 
+    if (!isAdmin(req)) {  // Can only be done by admin users
+        res.status(403).json(
             {
                 message: "You do not have permission to create a product."
             }
         )
         return;   // Stop further processing because user is not authorized...
     }
-    try{
+    try {
         const productId = req.params.productId; // Get product ID from request parameters
 
         await Product.deleteOne(
@@ -97,13 +97,13 @@ export async function deleteProduct(req, res) {
                 message: "Product deleted successfully"
             }
         )
-    }catch(error){
-        console.error("Error deleting product: ", error); 
+    } catch (error) {
+        console.error("Error deleting product: ", error);
         res.status(500).json(                           // Internal Server Error
             {
                 message: "Failed to delete product"
             }
         )
     }
-    
+
 }
