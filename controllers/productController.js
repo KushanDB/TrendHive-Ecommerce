@@ -16,25 +16,6 @@ export async function createProduct(req, res) {
         return;   // Stop further processing because user is not authorized...
     }
 
-
-    /* if(req.user == null){
-         res.status(401).json( 
-             {
-                 message: "Please login and try again."
-             }
-         )
-         return;   // Stop further processing because user is not authenticated...
-     }
- 
-     if(req.user.role !== "admin"){   // Check if user role is admin
-         res.status(403).json( 
-             {
-                 message: "You do not have permission to create a product."
-             }
-         )
-         return;   // Stop further processing because user is not authorized...
-     } */
-
     try {
         const productData = req.body;  // Get product data from request body
         const product = new Product(productData);        // Create new Product instance by using the model
