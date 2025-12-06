@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import studentRouter from "./routes/studentsRouter.js"; // Import studentRouter
 import userRouter from "./routes/userRouter.js";
 import jwt from "jsonwebtoken"; // Import jsonwebtoken for token verification
+import productRouter from "./routes/productRouter.js";
 
 
 const app = express()
@@ -61,12 +62,13 @@ mongoose.connect(connectionString).then(
 )
 
 // connect  studentRouter to /students path
-
 app.use("/students", studentRouter)
 
 // Connect userRouter to /users path 
-
 app.use("/users", userRouter)
+
+// Connect productRouter to /products path
+app.use("/products", productRouter);
 
 
 // Start the server in port 5000..
