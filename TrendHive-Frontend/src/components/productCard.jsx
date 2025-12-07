@@ -1,12 +1,12 @@
 import "./productCard.css"
 
-export default function ProductCard() {
+export default function ProductCard(props) {  // props is like an object that holds all the attributes passed to the component
   return (
     <div className="productCard">
-      <h1>Apple iPad</h1>
-      <p>Price: $499.99</p>
-      <img className="productImg" src ="https://www.apple.com/assets-www/en_WW/ipad/01_product_tile/medium/ipad_air_a5aaa09ad_2x.jpg" alt="Apple iPad" />
+      <h1>{props.name}</h1>
+      <p>Price: {props.price}</p>
+      <img className="productImg" src ={props.image}/>
       <button>Add to Cart</button>
     </div>
   )
-}
+} 
