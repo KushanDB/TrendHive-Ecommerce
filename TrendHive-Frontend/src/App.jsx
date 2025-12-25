@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 function App() {
   return (
     <BrowserRouter>
-      <div className="w-full h-[80vh] bg-gray-600">
+      <div className="w-full h-[100vh] bg-gray-600">
         <Routes path="/">
           <Route path='/' element={<h1>Home page</h1>}/>
           <Route path='/register' element={<h1>Register page</h1>}/>

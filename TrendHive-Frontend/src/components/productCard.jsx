@@ -1,4 +1,4 @@
-import "./productCard.css"
+
 
 export default function ProductCard(props) {  // props is like an object that holds all the attributes passed to the component
   return (

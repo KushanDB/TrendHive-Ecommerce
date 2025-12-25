@@ -4,10 +4,11 @@ export default function AdminPage() {
             <div className="w-[300px] h-full bg-blue-200">
 
             </div>
-            <div className="w-[calc(100%-300px)] h-full bg-blue-800 rounded-[20px]">
+            <div className="w-[calc(100%-300px)] h-full bg-blue-800 rounded-[20px]"> 
+                
 
             </div>
 
         </div>
     );
-}
+} 
