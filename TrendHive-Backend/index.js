@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import userRouter from "./routes/userRouter.js";
 import jwt from "jsonwebtoken"; // Import jsonwebtoken for token verification
 import productRouter from "./routes/productRouter.js";
+import cors from "cors";
 
 
 const app = express()
@@ -12,6 +13,8 @@ const app = express()
     console.log("You can proceed to your work...")
 }*/
 
+//Enable CORS for all origins--------------------
+app.use(cors())
 
 //Middleware to parse JSON bodies
 app.use(express.json())
