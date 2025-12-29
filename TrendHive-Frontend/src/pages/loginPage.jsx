@@ -17,6 +17,9 @@ export default function LoginPage() {
                 email: email,
                 password: password
             });
+
+            localStorage.setItem("token", response.data.token); // Store token in localStorage  
+            
             const user = response.data.user;
             if (user.role === "admin") {
                 navigate('/admin');  // Redirect to admin dashboard
