@@ -32,7 +32,7 @@ app.use(
         //console.log("Http request has been received to the middleware...")
         if (token != null) {
             token = token.replace("Bearer ", ""); // Remove 'Bearer ' prefix if present
-            jwt.verify(token, "jwt secretkey", // decrypt the token to get user data
+            jwt.verify(token, process.env.JWT_SECRET, // decrypt the token to get user data
                 (err, decoded) => {          // Run after decryption
                     if(decoded == null){
                         res.json(
