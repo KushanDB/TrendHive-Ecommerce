@@ -2,16 +2,14 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function LoginPage() {
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-  //--------------Send login request to backend by using axios library----------------
-
+    //------------Function to handle login------------//
     async function Login() {
         // Handle login logic here, e.g., send login request to backend
 
-        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/login`, {
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/users/login`, {
             email: email,
             password: password
         })
@@ -19,33 +17,63 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="w-full h-full bg-[url('/bg.jpg')] bg-cover bg-center flex">
-            <div className="w-[50%] h-full">
+        <div className="w-full h-screen bg-[url('/bg.jpg')] bg-cover bg-center flex items-center justify-center">
+            {/* Dark overlay for dark mode effect */}
+            <div className="absolute w-full h-full bg-black/50"></div>
 
-            </div>
+            <div className="relative z-10 w-full max-w-4xl bg-black/30 backdrop-blur-xl rounded-3xl shadow-2xl flex overflow-hidden border border-[#9CAFAA]/30">
+                
+                {/* Left Side: Branding / Info */}
+                <div className="w-1/2 bg-gradient-to-b from-black/40 to-[#000000]/70 flex flex-col justify-center items-center p-10">
+                    <img src="/img_11.png" alt="TrendHive Logo" className="w-32 h-32 mb-8" />
+                    <h1 className="text-4xl font-extrabold text-[#9CAFAA] mb-4 text-center">Welcome to TrendHive Global</h1>
+                    <p className="text-[#9CAFAA]/70 text-center text-lg">
+                        Experience a modern cosmetics shopping journey. Login to continue.
+                    </p>
+                </div>
 
-            <div className="w-[50%] h-full flex justify-center items-center">
-                <div className="w-[500px] h-[500px] backdrop-blur-md shadow-2xl rounded-[20px] flex flex-col justify-center items-center">
-                    <input onChange={
-                        (e) => {
-                            setEmail(e.target.value);
-                        }
-                    } className="w-[400px] h-[40px] bg-white mt-[100px] rounded-[5px] pl-[10px] text-[17px]" type="text" placeholder="Username" />
+                {/* Right Side: Login Form */}
+                <div className="w-1/2 flex flex-col justify-center items-center p-10">
+                    <h2 className="text-3xl font-semibold text-[#9CAFAA] mb-8">Login to Your Account</h2>
+                    
+                    <input
+                        type="text"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full h-12 rounded-lg pl-4 mb-4 text-lg placeholder-[#9CAFAA]/50 bg-black/40 text-[#9CAFAA] border border-[#9CAFAA]/30 focus:outline-none focus:ring-2 focus:ring-[#B87C4C]/70 transition"
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="w-full h-12 rounded-lg pl-4 mb-2 text-lg placeholder-[#9CAFAA]/50 bg-black/40 text-[#9CAFAA] border border-[#9CAFAA]/30 focus:outline-none focus:ring-2 focus:ring-[#B87C4C]/70 transition"
+                    />
 
-                    <input onChange={
-                        (e) => {
-                            setPassword(e.target.value);
-                        }
-                    } className="w-[400px] h-[40px] bg-white mt-[30px] rounded-[5px] pl-[10px] text-[17px]" type="password" placeholder="Password" />
+                    {/* Forgot Password */}
+                    <div className="w-full flex justify-end mb-6">
+                        <button className="text-[#B87C4C] hover:underline text-sm font-medium transition-colors">
+                            Forgot Password?
+                        </button>
+                    </div>
 
-                    <button onClick={Login} className="w-[400px] h-[40px] mt-[50px] rounded-[20px] bg-emerald-700 text-white text-[17px]">
+                    <button
+                        onClick={Login}
+                        className="w-full h-12 rounded-xl bg-[#B87C4C] text-black text-lg font-medium hover:bg-[#9CAFAA] hover:text-black transition-all duration-300 shadow-lg"
+                    >
                         Login
                     </button>
 
+                    {/* Register */}
+                    <p className="text-[#9CAFAA]/70 mt-6 text-sm">
+                        Don't have an account?{" "}
+                        <button className="text-[#B87C4C] underline font-medium hover:text-[#9CAFAA] transition-colors">
+                            Register
+                        </button>
+                    </p>
                 </div>
-
             </div>
-
         </div>
     );
 }
