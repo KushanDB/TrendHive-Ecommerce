@@ -6,6 +6,7 @@ export default function LoginPage() {
     const [password, setPassword] = useState("");
 
     //------------Function to handle login------------//
+
     async function Login() {
         // Handle login logic here, e.g., send login request to backend
 
@@ -25,8 +26,8 @@ export default function LoginPage() {
                 
                 {/* Left Side: Branding / Info */}
                 <div className="w-1/2 bg-gradient-to-b from-black/40 to-[#000000]/70 flex flex-col justify-center items-center p-10">
-                    <img src="/img_11.png" alt="TrendHive Logo" className="w-32 h-32 mb-8" />
-                    <h1 className="text-4xl font-extrabold text-[#9CAFAA] mb-4 text-center">Welcome to TrendHive Global</h1>
+                    <img src="/img_12.png" alt="TrendHive Logo" className="w-50 h-25 mb-10 rounded-2xl" />
+                    <h1 className="text-4xl font-extrabold text-[#9CAFAA] mb-4 text-center">Welcome to The TrendHive</h1>
                     <p className="text-[#9CAFAA]/70 text-center text-lg">
                         Experience a modern cosmetics shopping journey. Login to continue.
                     </p>
