@@ -36,7 +36,7 @@ export default function LoginPage() {
                         }
                     } className="w-[400px] h-[40px] bg-white mt-[30px] rounded-[5px] pl-[10px] text-[17px]" type="password" placeholder="Password" />
 
-                    <button onClick={Login} className="w-[400px] h-[40px] mt-[50px] rounded-[5px] bg-emerald-700 text-white text-[17px]">
+                    <button onClick={Login} className="w-[400px] h-[40px] mt-[50px] rounded-[20px] bg-emerald-700 text-white text-[17px]">
                         Login
                     </button>
 
