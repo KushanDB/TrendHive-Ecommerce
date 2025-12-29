@@ -1,13 +1,15 @@
 import { useState } from "react";
+import axios from "axios";
 
 export default function LoginPage() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+  //--------------Send login request to backend by using axios library----------------
 
     async function Login() {
-        // Handle login logic here
+        // Handle login logic here, e.g., send login request to backend
 
         const response = await axios.post('http://localhost:5000/users/login', {
             email: email,
