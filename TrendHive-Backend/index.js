@@ -4,6 +4,9 @@ import userRouter from "./routes/userRouter.js";
 import jwt from "jsonwebtoken"; // Import jsonwebtoken for token verification
 import productRouter from "./routes/productRouter.js";
 import cors from "cors";
+import dotenv from "dotenv";
+
+dotenv.config(); // Load environment variables from .env file
 
 
 const app = express()
@@ -51,7 +54,9 @@ app.use(
 //-----------------Authentication Middleware Ends Here-------------------
 
 
-const connectionString = "mongodb+srv://admin:Kushan123@cluster0.lloh3q9.mongodb.net/?appName=Cluster0"
+const connectionString = process.env.MONGODB_URI;
+
+// Connect to MongoDB database
 
 mongoose.connect(connectionString).then(
     () => {
