@@ -74,7 +74,14 @@ export function loginUser(req, res) {  // Login user function
                     res.json(
                         {
                             message: "Login successful",
-                            token: token  // Return the generated token
+                            token: token,  // Return the generated token
+                            user: {
+                                email: user.email,
+                                firstName: user.firstName,
+                                lastName: user.lastName,
+                                role: user.role,
+                                isEmailVerified: user.isEmailVerified
+                            }
                         }
                     )
                 } else { // If password does not match

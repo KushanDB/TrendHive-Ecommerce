@@ -10,11 +10,22 @@ export default function LoginPage() {
     async function Login() {
         // Handle login logic here, e.g., send login request to backend
 
-        const response = await axios.post(`${import.meta.env.VITE_API_URL}/users/login`, {
-            email: email,
-            password: password
-        })
-        console.log(response.data);
+        try {
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/users/login`, {
+                email: email,
+                password: password
+            });
+            const user = response.data.user;
+            if (user.role === "admin") {
+                window.location.href = '/admin';
+            } else {
+                window.location.href = '/';
+            }
+        } catch (error) {
+            console.error("Login failed:", error);
+            return;
+        }
+
     }
 
     return (
@@ -23,7 +34,7 @@ export default function LoginPage() {
             <div className="absolute w-full h-full bg-black/50"></div>
 
             <div className="relative z-10 w-full max-w-4xl bg-black/30 backdrop-blur-xl rounded-3xl shadow-2xl flex overflow-hidden border border-[#9CAFAA]/30">
-                
+
                 {/* Left Side: Branding / Info */}
                 <div className="w-1/2 bg-gradient-to-b from-black/40 to-[#000000]/70 flex flex-col justify-center items-center p-10">
                     <img src="/img_12.png" alt="TrendHive Logo" className="w-50 h-25 mb-10 rounded-2xl" />
@@ -36,7 +47,7 @@ export default function LoginPage() {
                 {/* Right Side: Login Form */}
                 <div className="w-1/2 flex flex-col justify-center items-center p-10">
                     <h2 className="text-3xl font-semibold text-[#9CAFAA] mb-8">Login to Your Account</h2>
-                    
+
                     <input
                         type="text"
                         placeholder="Email"
