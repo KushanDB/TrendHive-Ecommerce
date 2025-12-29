@@ -69,11 +69,10 @@ mongoose.connect(connectionString).then(
 )
 
 // Connect userRouter to /users path 
-app.use("/users", userRouter)
+app.use("/api/users", userRouter)
 
 // Connect productRouter to /products path
-app.use("/products", productRouter);
-
+app.use("/api/products", productRouter);
 
 // Start the server in port 5000..
 
