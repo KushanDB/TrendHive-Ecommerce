@@ -13,8 +13,8 @@ export default function LoginPage() {
     async function Login() {
         // Handle login logic here, e.g., send login request to backend
 
-        try {
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/login`, {
+        try { // Use Axios to send POST request
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/login`, { 
                 email: email,
                 password: password
             });
