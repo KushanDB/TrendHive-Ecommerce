@@ -9,14 +9,14 @@ import dotenv from "dotenv";
 dotenv.config(); // Load environment variables from .env file
 
 
-const app = express()
+const app = express() 
 
 /*function success(){
     console.log("Server is started...")
     console.log("You can proceed to your work...")
 }*/
 
-//Enable CORS for all origins--------------------
+//------------Middleware to Enable CORS for all origins--------------------
 app.use(cors())
 
 //Middleware to parse JSON bodies
